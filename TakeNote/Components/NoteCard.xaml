@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TakeNote.Components.NoteCard"
+             x:Name="this">
+
+
+
+
+
+
+
+    <Border WidthRequest="200" HeightRequest="250" BindingContext="{x:Reference this}">
+   
+        <VerticalStackLayout>
+            <Label Text="Title ONE"> </Label>
+            <Label Text="{Binding CardTitle, FallbackValue='Untitled'}" TextColor="Red"> </Label>
+            <Label Text="{Binding CardDescription, FallbackValue='No Description'}" TextColor="Red"></Label>
+            
+        </VerticalStackLayout>
+    </Border>
+    
+    
+    
+    
+    
+</ContentView>
