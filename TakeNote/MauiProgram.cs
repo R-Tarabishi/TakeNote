@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using TakeNote.Data;
 
 namespace TakeNote;
 
@@ -9,11 +10,15 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
+
+        //Database DI
+        string dbPath = Path.Combine(FileSystem.AppDataDirectory, "TakeNote.db");
+		builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<Repository>(s, dbPath));
 
 #if DEBUG
 		builder.Logging.AddDebug();

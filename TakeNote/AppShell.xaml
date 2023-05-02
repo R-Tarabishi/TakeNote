@@ -11,8 +11,14 @@
         Title="Home"
         ContentTemplate="{DataTemplate Views:HomePage}"
         Route="HomePage" />
-
     </FlyoutItem>
+    <FlyoutItem Title="Boards">
+        <ShellContent
+        Title="Boards"
+        ContentTemplate="{DataTemplate Views:BoardsView}"
+        Route="BoardsView" />
+    </FlyoutItem>
+
 
 
 </Shell>
