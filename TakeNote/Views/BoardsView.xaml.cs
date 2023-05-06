@@ -13,37 +13,52 @@ public partial class BoardsView : ContentPage
 
     public List<Board> boardsList = App.TakeNoteRepo.GetBoards();
 
+    private int currentBoard = 2;
     
     public BoardsView()
 	{
 		InitializeComponent();
-        
 
         foreach (Board board in boardsList)
         {
             Button boardName_btn = new Button();
             boardName_btn.Text = board.Name;
             boardsStack.Add(boardName_btn);
+            boardName_btn.Clicked += BoardName_btn_Clicked;
 
 
-            Label lbID = new Label();
-            lbID.Text = "ID: "+board.Id.ToString();
-            boardsStack.Add(lbID);
+            //Give button Custom property for board id
 
         }
 
-        foreach (var board in boardsList)
+
+
+
+
+        foreach (var note in App.TakeNoteRepo.GetNotes(currentBoard))
         {
-            
-            foreach (var note in board.notes)
+            if (note != null)
             {
                 NoteCard noteCard = new NoteCard();
                 noteCard.CardTitle = note.Title;
                 noteCard.CardDescription = note.Description;
                 notesStack.Add(noteCard);
             }
+            else
+            {
+                 DisplayAlert("Alert", "no Notes", "Ok");
+                return;
+            }
+
         }
 
+
+    }
+
+    private void BoardName_btn_Clicked(object sender, EventArgs e)
+    {
+        //based on button's board's id, a board will be selected,
+        int board_id;
 
     }
 
