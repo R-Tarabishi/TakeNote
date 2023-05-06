@@ -55,6 +55,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="MauiProgram.cs">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Components\NoteCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
