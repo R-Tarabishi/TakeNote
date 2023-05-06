@@ -25,15 +25,8 @@ namespace TakeNote.Models
         [ForeignKey(typeof(Board))]
         public int boardID { get; set; }
 
-
-        public Note()
-        {
-            
-
-        }
-
         [ManyToOne]
-        public Board board { get; set; }
+        public virtual Board board { get; set; }
 
     }
 }

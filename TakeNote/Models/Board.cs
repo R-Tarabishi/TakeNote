@@ -16,7 +16,7 @@ namespace TakeNote.Models
     public class Board
     {
         [PrimaryKey, AutoIncrement, Column("id")]
-        public int Id { get; set; }
+        public int boardID { get; set; }
         public string Name { get; set; }
 
         [OneToMany(CascadeOperations = CascadeOperation.All)]
@@ -24,8 +24,8 @@ namespace TakeNote.Models
 
         public Board()
         {
-            this.Id = 0;
-            this.Name = "Default";
+            this.Name = "Unnamed Board";
+            this.notes = new List<Note>();
         }
     }
 }
