@@ -11,7 +11,11 @@
 
 
     <Border WidthRequest="200" HeightRequest="250" BindingContext="{x:Reference this}">
-   
+        <!--Edit Here for Drag and Drop-->
+        <Border.GestureRecognizers>
+            <DragGestureRecognizer CanDrag="True"/>
+            <DropGestureRecognizer AllowDrop="True"/>
+        </Border.GestureRecognizers>
         <VerticalStackLayout>
             <Label Text="Title ONE"> </Label>
             <Label Text="{Binding CardTitle, FallbackValue='Untitled'}" TextColor="Red"> </Label>
