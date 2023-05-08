@@ -16,22 +16,27 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <ScrollView Grid.Column="0">
+        <ScrollView Grid.Column="0" Grid.Row="0">
             
-            <VerticalStackLayout x:Name="boardsStack">
+            <VerticalStackLayout x:Name="boardsStack" Spacing="4">
                 <Label Text="BOARDS:"></Label>
 
             </VerticalStackLayout>
         </ScrollView>
         
         
-        <ScrollView Grid.Column="1">
+        <ScrollView Grid.Column="1" Grid.Row="0">
             <VerticalStackLayout x:Name="notesStack">
                 <Label Text="NOTES:"></Label>
 
             </VerticalStackLayout>
         </ScrollView>
-        
+        <Button Grid.Row="2"
+                Grid.Column="0"
+                Text="Create New Board"
+                HeightRequest="50"
+                VerticalOptions="EndAndExpand"
+                Clicked="createBoard_PopUp"></Button>
     </Grid>
 
 </ContentPage>
