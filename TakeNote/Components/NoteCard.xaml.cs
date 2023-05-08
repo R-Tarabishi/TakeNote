@@ -9,8 +9,8 @@ public partial class NoteCard : ContentView
 
     public string CardTitle
     {
-        get => (string)GetValue(NoteCard.CardTitleProperty);
-        set => SetValue(NoteCard.CardTitleProperty, value);
+        get => (string)GetValue(CardTitleProperty);
+        set => SetValue(CardTitleProperty, value);
     }
 
     public string CardDescription

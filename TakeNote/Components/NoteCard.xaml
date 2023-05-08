@@ -2,16 +2,13 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TakeNote.Components.NoteCard"
-             >
+             x:Name="noteCard">
 
-
-
-
-
-
-
-    <Border WidthRequest="200" HeightRequest="250" BindingContext="{x:Reference this}">
-        <!--Edit Here for Drag and Drop-->
+    <Border WidthRequest="200" HeightRequest="250" 
+            BindingContext="{Binding Source={x:Reference noteCard}}">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="10,10,10,10" />
+        </Border.StrokeShape>
         <Border.GestureRecognizers>
             <DragGestureRecognizer CanDrag="True"/>
             <DropGestureRecognizer AllowDrop="True"/>
@@ -20,7 +17,6 @@
             <Label Text="Title ONE"> </Label>
             <Label Text="{Binding CardTitle, FallbackValue='Untitled'}" TextColor="Red"> </Label>
             <Label Text="{Binding CardDescription, FallbackValue='No Description'}" TextColor="Red"></Label>
-            
         </VerticalStackLayout>
     </Border>
     
