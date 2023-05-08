@@ -1,6 +1,7 @@
 
 using TakeNote.Models;
 using TakeNote;
+using Microsoft.Maui.ApplicationModel.Communication;
 
 namespace TakeNote.Views;
 
@@ -9,6 +10,7 @@ public partial class HomePage : ContentPage
     public HomePage()
     {
         InitializeComponent();
+
 
         //Drop table, and start fresh on launch , Remove Later, add check if table Exists
         if (App.TakeNoteRepo.dropTable(" DROP Table 'boards'") == 0)
@@ -19,27 +21,31 @@ public partial class HomePage : ContentPage
         {
             DisplayAlert("Alert", "DB Notes does not exist", "Continue");
         }
+        if (App.TakeNoteRepo.dropTable(" DROP Table 'Users'") == 0)
+        {
+            DisplayAlert("Alert", "DB Users does not exist", "Continue");
+        }
 
         App.TakeNoteRepo.InitConn();
-        initBoards();
-        List<Board> boardsList = App.TakeNoteRepo.GetBoards();
-        initnotes(boardsList);
+        addDefaultBoard();
+        initnotes(App.TakeNoteRepo.GetBoards());
         addTestUser();
     }
 
 
     //genereate 5 boards, for now
-    public void initBoards()
+    public void addDefaultBoard()
     {
-        for (int i = 1; i < 6; i++)
+        if(App.TakeNoteRepo.GetBoards().Count == 0)
         {
             App.TakeNoteRepo.addBoard(new Board
             {
-                Name = "board " + i
-
+                Name = "Default Board"
             });
         }
     }
+
+
 
     //procedurly generate nodes, for now
     public async void initnotes(List<Board> boardslist)
@@ -82,8 +88,15 @@ public partial class HomePage : ContentPage
         App.TakeNoteRepo.updateBoards(updatedBoards);
     }
 
+
+
     public async  void logIn_btn(object sender, EventArgs e)
     {
+        if(!validateInput())
+        {
+            await DisplayAlert("Error", "Fields Cant be empty or contain white space", "Ok");
+            return;
+        }
 
         List<User> users = App.TakeNoteRepo.GetUsers();
         foreach (User user in users)
@@ -91,15 +104,13 @@ public partial class HomePage : ContentPage
             if (user.name == username.Text && user.password == password.Text && user != null)
             {
                 await Shell.Current.GoToAsync("//BoardsView");
-            }
-            else
-            {
-               await  DisplayAlert("Error", "Wrong Username and password", "Ok");
                 return;
             }
         }
-
+        await DisplayAlert("Error", "Wrong Username and password", "Ok");
     }
+
+
     public void OnEntryTextChanged(object sender, TextChangedEventArgs e)
     {
 
@@ -113,11 +124,32 @@ public partial class HomePage : ContentPage
     void addTestUser()
     {
         User user = new User();
-        user.name = "root";
-        user.password = "admin";
-
+        user.name = "test";
+        user.password = "test";
         App.TakeNoteRepo.addUser(user);
-
     }
 
+    private async void onTapToRegister(object sender, TappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync("//RegisterPage");
+    }
+
+
+    bool validateInput()
+    {
+        if (!string.IsNullOrEmpty(username.Text)
+            && !string.IsNullOrEmpty(password.Text)
+            && !string.IsNullOrWhiteSpace(username.Text) 
+            && !string.IsNullOrWhiteSpace(password.Text)
+            && !username.Text.Contains(" ")
+            && !password.Text.Contains(" "))
+            return true;
+
+        return false;
+    }
+    void ClearFields(Object sender,  EventArgs e)
+    {
+        username.Text = string.Empty;
+        password.Text = string.Empty;
+    }
 }

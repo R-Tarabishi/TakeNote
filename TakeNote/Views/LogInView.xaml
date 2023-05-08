@@ -3,8 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Views="clr-namespace:TakeNote.Views"
              x:Class="TakeNote.Views.HomePage"
-             Title="Login">
-    <VerticalStackLayout  WidthRequest="400" Margin="0,200,0,0" Spacing="30">
+             Title="Login"
+             Disappearing="ClearFields">
+    
+    <VerticalStackLayout  WidthRequest="400" 
+                          Margin="0,200,0,0" 
+                          Spacing="30">
         <Entry x:Name="username"
        Placeholder="Enter Username"
        Completed="OnEntryCompleted" />
@@ -21,15 +25,16 @@
 
         <Button Text="Log in" Clicked="logIn_btn"/>
         <Label>
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="onTapToRegister" NumberOfTapsRequired="1"/>
+            </Label.GestureRecognizers>
             <Label.FormattedText>
                 <FormattedString>
                     <Span Text="To Register, click " />
-                    <Span Text="here"
+                    <Span
+                  Text="here"
                   TextColor="Blue"
                   TextDecorations="Underline">
-                        <Span.GestureRecognizers>
-                            <TapGestureRecognizer/>
-                        </Span.GestureRecognizers>
                     </Span>
                 </FormattedString>
             </Label.FormattedText>
