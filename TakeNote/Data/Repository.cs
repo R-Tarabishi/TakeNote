@@ -31,6 +31,10 @@ namespace TakeNote.Data
             {
                 return CreateTableResult.Migrated;
             }
+            if (!_connection.CreateTable<User>().HasFlag(CreateTableResult.Created))
+            {
+                return CreateTableResult.Migrated;
+            }
 
             return CreateTableResult.Created;
         }
@@ -98,11 +102,7 @@ namespace TakeNote.Data
         }
 
 
-
-
-
-
-
+        //Table Operations
         public int dropTable(string tableName)
         {
             _connection = new SQLiteConnection(_dbPath);
@@ -118,6 +118,18 @@ namespace TakeNote.Data
             }
 
             return 1;
+        }
+
+        //User Operations
+        public List<User> GetUsers()
+        {
+            _connection = new SQLiteConnection(_dbPath);
+            return _connection.Table<User>().ToList();
+        }
+        public void addUser(User user)
+        {
+            _connection = new SQLiteConnection(_dbPath);
+            _connection.Insert(user);
         }
     }
 }
