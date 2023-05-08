@@ -8,9 +8,9 @@
 
     <FlyoutItem Title="Home">
         <ShellContent
-        Title="Home"
+        Title="Log in"
         ContentTemplate="{DataTemplate Views:HomePage}"
-        Route="HomePage" />
+        Route="LogInView" />
     </FlyoutItem>
     <FlyoutItem Title="Boards">
         <ShellContent

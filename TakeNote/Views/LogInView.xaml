@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Views="clr-namespace:TakeNote.Views"
+             x:Class="TakeNote.Views.HomePage"
+             Title="Login">
+    <VerticalStackLayout  WidthRequest="400" Margin="0,200,0,0" Spacing="30">
+        <Entry x:Name="username"
+       Placeholder="Enter Username"
+       Completed="OnEntryCompleted" />
+
+        <Entry x:Name="password"
+       Placeholder="Enter Password"
+       Completed="OnEntryCompleted" />
+
+        <HorizontalStackLayout Spacing="5">
+            <CheckBox />
+            <Label Text="Remember Me"/>
+        </HorizontalStackLayout>
+
+
+        <Button Text="Log in" Clicked="logIn_btn"/>
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="To Register, click " />
+                    <Span Text="here"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer/>
+                        </Span.GestureRecognizers>
+                    </Span>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </VerticalStackLayout>
+</ContentPage>
