@@ -8,5 +8,6 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
         Routing.RegisterRoute("BoardsView", typeof(BoardsView));
+        Routing.RegisterRoute("RegisterPage", typeof(RegisterPage));
     }
 }

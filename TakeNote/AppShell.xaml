@@ -18,6 +18,14 @@
         ContentTemplate="{DataTemplate Views:BoardsView}"
         Route="BoardsView" />
     </FlyoutItem>
+    <FlyoutItem Title="Register"
+                FlyoutItemIsVisible="False">
+        <ShellContent
+        Title="Register"
+        ContentTemplate="{DataTemplate Views:RegisterPage}"
+        Route="RegisterPage" 
+        />
+    </FlyoutItem>
 
 
 
